@@ -1,159 +1,328 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<title>GlobeCheck – Plateforme de check-in AI</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-<style>
-:root {
-  --primary: #002B5B;
-  --secondary: #0057D9;
-  --accent: #00A8E8;
-  --light: #F4F7FA;
-  --dark: #0A1F44;
-}
-* {box-sizing: border-box;}
-body {margin:0;font-family:'Poppins', sans-serif;background:var(--light);color:var(--dark);line-height:1.6;}
-header {position:fixed;top:0;width:100%;background:var(--primary);color:#fff;display:flex;align-items:center;justify-content:space-between;padding:20px 40px;box-shadow:0 2px 6px rgba(0,0,0,0.1);z-index:1000;}
-.logo {display:flex;align-items:center;font-size:1.6em;font-weight:700;}
-.logo svg {width:32px;height:32px;margin-right:10px;fill:var(--accent);}
-nav a {color:#fff;margin-left:25px;text-decoration:none;font-weight:500;transition:opacity .3s;}
-nav a:hover {opacity:0.8;}
-.hero {background:linear-gradient(135deg,var(--secondary),var(--accent));color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:200px 20px 160px;text-align:center;}
-.hero h1 {font-size:3em;margin:10px 0;font-weight:700;}
-.hero p {font-size:1.3em;max-width:700px;margin:20px 0;}
-.btn {padding:16px 36px;border:none;border-radius:30px;font-size:1em;font-weight:600;cursor:pointer;margin:5px 8px;transition:all .3s;}
-.btn-primary {background:#fff;color:var(--secondary);}
-.btn-primary:hover {background:#e5efff;transform:translateY(-3px);}
-.btn-outline {background:transparent;border:2px solid #fff;color:#fff;}
-.btn-outline:hover {background:rgba(255,255,255,0.2);transform:translateY(-3px);}
-.section {padding:120px 40px;}
-.section h2 {text-align:center;font-size:2.6em;margin-bottom:60px;color:var(--primary);}
-.features-grid {display:flex;flex-wrap:wrap;justify-content:center;gap:30px;}
-.feature-card {background:#fff;border-radius:15px;box-shadow:0 6px 12px rgba(0,0,0,0.05);padding:40px 30px;width:320px;text-align:center;transition:transform .3s;}
-.feature-card:hover {transform:translateY(-5px);}
-.feature-icon {margin-bottom:20px;}
-.feature-icon svg {width:50px;height:50px;fill:var(--secondary);}
-.feature-card h3 {margin:0;font-size:1.5em;color:var(--primary);}
-.feature-card p {font-size:1em;margin-top:10px;color:var(--dark);}
-.forms-wrapper {display:flex;flex-wrap:wrap;justify-content:center;gap:50px;margin-top:40px;}
-.form-box {background:#fff;border-radius:15px;box-shadow:0 6px 12px rgba(0,0,0,0.05);padding:40px;width:360px;}
-.form-box h3 {margin-top:0;color:var(--primary);font-size:1.6em;}
-.form-box input {width:100%;padding:14px;margin:10px 0;border:1px solid #ccc;border-radius:8px;font-size:1em;}
-.form-box button {width:100%;padding:14px;border:none;border-radius:30px;background:var(--secondary);color:#fff;font-size:1em;font-weight:600;cursor:pointer;transition:background .3s;}
-.form-box button:hover {background:var(--primary);}
-footer {background:var(--primary);color:#fff;text-align:center;padding:30px;margin-top:80px;}
-@media (max-width:768px) {
-  .hero h1 {font-size:2.4em;}
-  .features-grid {flex-direction:column;align-items:center;}
-  .forms-wrapper {flex-direction:column;}
-}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GlobeCheck – Plateforme de check‑in AI</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #0A2342;
+      --secondary: #1E3A8A;
+      --accent: #38B6FF;
+      --light: #F9FAFB;
+      --dark: #0F172A;
+    }
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      font-family: 'Montserrat', sans-serif;
+      background: var(--light);
+      color: var(--dark);
+    }
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      background: var(--primary);
+      color: #fff;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      font-size: 1.5rem;
+      font-weight: 700;
+    }
+    .logo svg {
+      width: 32px;
+      height: 32px;
+      margin-right: 8px;
+      fill: var(--accent);
+    }
+    nav a {
+      color: #fff;
+      margin-left: 1.5rem;
+      text-decoration: none;
+      font-weight: 500;
+      transition: opacity .3s;
+    }
+    nav a:hover { opacity: 0.8; }
+    .hero {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 6rem 1rem 4rem;
+      background: linear-gradient(135deg, var(--secondary), var(--accent));
+      color: #fff;
+    }
+    .hero h1 {
+      font-size: 2.5rem;
+      margin: 0.5rem 0;
+      font-weight: 700;
+    }
+    .hero p {
+      font-size: 1.2rem;
+      max-width: 700px;
+      margin: 1rem 0 2rem;
+    }
+    .buttons {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .btn {
+      padding: 0.8rem 1.5rem;
+      border-radius: 30px;
+      border: 2px solid transparent;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      margin: 0.3rem;
+      transition: transform .3s, background .3s;
+    }
+    .btn-primary {
+      background: #fff;
+      color: var(--secondary);
+    }
+    .btn-primary:hover {
+      background: #e5efff;
+      transform: translateY(-3px);
+    }
+    .btn-outline {
+      background: transparent;
+      border-color: #fff;
+      color: #fff;
+    }
+    .btn-outline:hover {
+      background: rgba(255,255,255,0.2);
+      transform: translateY(-3px);
+    }
+    .features {
+      padding: 4rem 2rem;
+      background: var(--light);
+      text-align: center;
+    }
+    .features h2 {
+      font-size: 2rem;
+      margin-bottom: 2rem;
+    }
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    .feature-card {
+      background: #fff;
+      border-radius: 12px;
+      padding: 2rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      transition: transform .3s, box-shadow .3s;
+    }
+    .feature-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    }
+    .feature-card svg {
+      width: 40px;
+      height: 40px;
+      fill: var(--accent);
+      margin-bottom: 1rem;
+    }
+    .feature-card h3 {
+      margin: 0.5rem 0;
+      font-size: 1.3rem;
+    }
+    .forms-section {
+      padding: 4rem 2rem;
+      background: var(--dark);
+      color: #fff;
+      text-align: center;
+    }
+    .forms-section h2 { margin-bottom: 1.5rem; }
+    .forms {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2rem;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    .form-container {
+      background: #fff;
+      color: var(--dark);
+      padding: 2rem;
+      border-radius: 12px;
+      width: 300px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    .form-container h3 {
+      margin-top: 0;
+      margin-bottom: 1rem;
+    }
+    .form-container input {
+      width: 100%;
+      padding: 0.6rem;
+      margin: 0.5rem 0 1rem;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+    .form-container button {
+      width: 100%;
+      padding: 0.7rem;
+      background: var(--secondary);
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background .3s;
+    }
+    .form-container button:hover { background: var(--accent); }
+    .message {
+      margin-top: 0.5rem;
+      font-size: 0.9rem;
+      min-height: 1.2rem;
+    }
+    footer {
+      background: var(--primary);
+      color: #fff;
+      text-align: center;
+      padding: 1rem;
+    }
+    @media (max-width: 600px) {
+      .hero h1 { font-size: 2rem; }
+      .hero p { font-size: 1rem; }
+    }
+  </style>
 </head>
 <body>
-<header>
-  <div class="logo">
-    <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="8 12 11 15 16 9" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-    GlobeCheck
-  </div>
-  <nav>
-    <a href="#features">Fonctionnalités</a>
-    <a href="#register">Inscription</a>
-    <a href="#login">Connexion</a>
-  </nav>
-</header>
-<section class="hero">
-  <h1>Révolutionnez vos check-ins avec l’IA</h1>
-  <p>Une plateforme d’enregistrement intelligente et sécurisée pour un accueil simplifié et professionnel à travers le monde.</p>
-  <div>
-    <button class="btn btn-primary" onclick="scrollToSection('register')">Commencer gratuitement</button>
-    <button class="btn btn-outline" onclick="scrollToSection('login')">Déjà membre ?</button>
-  </div>
-</section>
-<section id="features" class="section">
-  <h2>Fonctionnalités</h2>
-  <div class="features-grid">
-    <div class="feature-card">
-      <div class="feature-icon">
-        <svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/><polyline points="9 12 11 14 15 10" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </div>
-      <h3>Vérification IA avancée</h3>
-      <p>Analyse biométrique et vérification de documents pour une identité certifiée en temps réel.</p>
+  <header>
+    <div class="logo">
+      <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" stroke="none"></circle><path d="M10 14l-2-2 1.4-1.4L10 11.2l4.6-4.6L16 8l-6 6z" fill="currentColor"></path></svg>
+      GlobeCheck
     </div>
-    <div class="feature-card">
-      <div class="feature-icon">
-        <svg viewBox="0 0 24 24"><path d="M3 13h2v-2H3v2zm4 0h14v-2H7v2zm0 4h14v-2H7v2zm0-8h14V7H7v2zm-4 8h2v-2H3v2zm0-12v2h2V5H3zm4 12h14v-2H7v2z"/></svg>
-      </div>
-      <h3>Automatisation complète</h3>
-      <p>Simplifiez l’arrivée de vos invités avec des processus automatisés du début à la fin.</p>
+    <nav>
+      <a href="#features">Fonctionnalités</a>
+      <a href="#signup">Inscription</a>
+      <a href="#login">Connexion</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h1>Révolutionnez vos check-ins avec l’IA</h1>
+    <p>La solution de vérification d'identité avancée, sécurisée et rapide. Automatisez vos check-ins et protégez vos propriétés en toute simplicité.</p>
+    <div class="buttons">
+      <a href="#signup" class="btn btn-primary">Commencer gratuitement</a>
+      <a href="#login" class="btn btn-outline">Se connecter</a>
     </div>
-    <div class="feature-card">
-      <div class="feature-icon">
-        <svg viewBox="0 0 24 24"><path d="M12 2a9 9 0 00-9 9v7h4v4h10v-4h4v-7a9 9 0 00-9-9z"/></svg>
+  </section>
+
+  <section id="features" class="features">
+    <h2>Pourquoi GlobeCheck&nbsp;?</h2>
+    <div class="feature-grid">
+      <div class="feature-card">
+        <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 100 20 10 10 0 000-20zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"></path></svg>
+        <h3>Vérification Avancée</h3>
+        <p>Technologies IA de pointe pour vérifier les identités en temps réel et sécuriser vos locations.</p>
       </div>
-      <h3>Protection optimale</h3>
-      <p>Des contrôles rigoureux pour sécuriser vos biens et garantir la tranquillité d’esprit.</p>
+      <div class="feature-card">
+        <svg viewBox="0 0 24 24"><path d="M4 4h16v2H4zM4 11h16v2H4zM4 18h16v2H4z"></path></svg>
+        <h3>Automatisation Totale</h3>
+        <p>Gérez toutes les étapes du check-in automatiquement, réduisant le temps et les efforts nécessaires.</p>
+      </div>
+      <div class="feature-card">
+        <svg viewBox="0 0 24 24"><path d="M12 2L2 7v6c0 5.25 3.66 10.74 10 13 6.34-2.26 10-7.75 10-13V7l-10-5z"></path></svg>
+        <h3>Protection Optimale</h3>
+        <p>Des contrôles renforcés pour protéger vos propriétés et assurer la confiance de vos clients.</p>
+      </div>
     </div>
-  </div>
-</section>
-<section id="register" class="section">
-  <h2>Créer un compte</h2>
-  <div class="forms-wrapper">
-    <div class="form-box">
-      <form id="registerForm">
+  </section>
+
+  <section id="signup" class="forms-section">
+    <h2>Créez un compte</h2>
+    <div class="forms">
+      <div class="form-container">
         <h3>Inscription</h3>
         <input type="text" id="regUsername" placeholder="Nom d’utilisateur" required>
         <input type="password" id="regPassword" placeholder="Mot de passe" required>
-        <button type="submit">Créer un compte</button>
-        <p id="registerMessage"></p>
-      </form>
+        <button id="registerBtn">Créer un compte</button>
+        <div id="registerMessage" class="message"></div>
+      </div>
     </div>
-  </div>
-</section>
-<section id="login" class="section">
-  <h2>Connexion</h2>
-  <div class="forms-wrapper">
-    <div class="form-box">
-      <form id="loginForm">
+  </section>
+
+  <section id="login" class="forms-section">
+    <h2>Se connecter</h2>
+    <div class="forms">
+      <div class="form-container">
         <h3>Connexion</h3>
         <input type="text" id="loginUsername" placeholder="Nom d’utilisateur" required>
         <input type="password" id="loginPassword" placeholder="Mot de passe" required>
-        <button type="submit">Se connecter</button>
-        <p id="loginMessage"></p>
-      </form>
+        <button id="loginBtn">Se connecter</button>
+        <div id="loginMessage" class="message"></div>
+      </div>
     </div>
-  </div>
-</section>
-<footer>
-  <p>&copy; 2025 GlobeCheck. Tous droits réservés.</p>
-</footer>
-<script>
-function scrollToSection(id){ document.getElementById(id).scrollIntoView({behavior:'smooth'}); }
-document.getElementById('registerForm').addEventListener('submit', async function(e){
- e.preventDefault();
- const username = document.getElementById('regUsername').value;
- const password = document.getElementById('regPassword').value;
- const response = await fetch('http://localhost:3000/api/users', {
-   method:'POST',
-   headers:{'Content-Type':'application/json'},
-   body: JSON.stringify({username, password})
- });
- const result = await response.json();
- document.getElementById('registerMessage').textContent = result.message;
-});
-document.getElementById('loginForm').addEventListener('submit', async function(e){
- e.preventDefault();
- const username = document.getElementById('loginUsername').value;
- const password = document.getElementById('loginPassword').value;
- const response = await fetch('http://localhost:3000/api/auth/login', {
-   method:'POST',
-   headers:{'Content-Type':'application/json'},
-   body: JSON.stringify({username, password})
- });
- const result = await response.json();
- document.getElementById('loginMessage').textContent = result.message;
-});
-</script>
+  </section>
+
+  <footer>
+    &copy; 2025 GlobeCheck. Tous droits réservés.
+  </footer>
+
+  <script>
+    // Smooth scroll for nav anchors
+    document.querySelectorAll('nav a').forEach(link => {
+      link.addEventListener('click', e => {
+        e.preventDefault();
+        document.querySelector(link.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
+      });
+    });
+    // Registration
+    document.getElementById('registerBtn').addEventListener('click', async () => {
+      const username = document.getElementById('regUsername').value.trim();
+      const password = document.getElementById('regPassword').value.trim();
+      if (!username || !password) {
+        document.getElementById('registerMessage').textContent = 'Tous les champs sont requis.';
+        return;
+      }
+      const res = await fetch('http://localhost:3000/api/users', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username, password })
+      });
+      const data = await res.json();
+      document.getElementById('registerMessage').textContent = data.message;
+    });
+    // Login
+    document.getElementById('loginBtn').addEventListener('click', async () => {
+      const username = document.getElementById('loginUsername').value.trim();
+      const password = document.getElementById('loginPassword').value.trim();
+      if (!username || !password) {
+        document.getElementById('loginMessage').textContent = 'Tous les champs sont requis.';
+        return;
+      }
+      const res = await fetch('http://localhost:3000/api/auth/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username, password })
+      });
+      const data = await res.json();
+      if (data.token) {
+        localStorage.setItem('globecheck_token', data.token);
+        document.getElementById('loginMessage').textContent = 'Connexion réussie !';
+      } else {
+        document.getElementById('loginMessage').textContent = data.message || 'Erreur de connexion.';
+      }
+    });
+  </script>
 </body>
 </html>
