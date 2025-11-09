@@ -2,41 +2,61 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<title>GlobeCheck – L'IA au service des check-ins</title>
+<title>GlobeCheck – Plateforme de check-in AI</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
-body {margin:0;font-family:'Montserrat', sans-serif;background:#f7f9fc;color:#333;line-height:1.6;}
-header {position:fixed;width:100%;background:#002B5B;color:#fff;display:flex;justify-content:space-between;align-items:center;padding:20px 40px;box-shadow:0 2px 4px rgba(0,0,0,0.1);z-index:1000;}
-header h1{margin:0;font-size:2em;font-weight:700;}
-nav a{color:#fff;margin-left:25px;text-decoration:none;font-weight:500;transition:opacity 0.3s;}
-nav a:hover{opacity:0.8;}
-.hero{display:flex;align-items:center;justify-content:center;flex-direction:column;background:linear-gradient(135deg,#4facfe,#00f2fe);color:#fff;padding:180px 20px 120px;text-align:center;}
-.hero h1{font-size:3.2em;margin-bottom:20px;font-weight:700;}
-.hero p{font-size:1.2em;max-width:600px;margin-bottom:40px;}
-.hero .btn{padding:15px 35px;border:none;border-radius:30px;font-size:1em;margin:5px 10px;cursor:pointer;transition:transform 0.3s;}
-.btn-primary{background:#fff;color:#007BFF;}
-.btn-primary:hover{transform:translateY(-3px);background:#e5f1ff;}
-.btn-outline{background:transparent;border:2px solid #fff;color:#fff;}
-.btn-outline:hover{transform:translateY(-3px);background:rgba(255,255,255,0.2);}
-.section{padding:100px 40px;margin-top:40px;}
-.section h2{text-align:center;font-size:2.4em;margin-bottom:50px;font-weight:700;color:#002B5B;}
-.features-grid{display:flex;flex-wrap:wrap;justify-content:center;gap:30px;}
-.feature{background:#fff;border-radius:12px;box-shadow:0 4px 8px rgba(0,0,0,0.05);padding:30px;width:300px;text-align:center;}
-.feature h3{margin-top:0;font-size:1.4em;color:#002B5B;}
-.feature p{font-size:1em;margin-top:10px;}
-.forms-container{display:flex;flex-wrap:wrap;justify-content:center;gap:40px;}
-.form-card{background:#fff;padding:30px;border-radius:12px;box-shadow:0 4px 8px rgba(0,0,0,0.05);width:340px;}
-.form-card h3{margin-top:0;color:#002B5B;}
-.form-card input{width:100%;padding:12px;margin:8px 0;border:1px solid #ccc;border-radius:6px;font-size:1em;}
-.form-card button{width:100%;padding:14px;border:none;border-radius:30px;background:#007BFF;color:#fff;font-size:1em;cursor:pointer;transition:background 0.3s;}
-.form-card button:hover{background:#0056b3;}
-footer{background:#002B5B;color:#fff;text-align:center;padding:25px;margin-top:60px;}
+:root {
+  --primary: #002B5B;
+  --secondary: #0057D9;
+  --accent: #00A8E8;
+  --light: #F4F7FA;
+  --dark: #0A1F44;
+}
+* {box-sizing: border-box;}
+body {margin:0;font-family:'Poppins', sans-serif;background:var(--light);color:var(--dark);line-height:1.6;}
+header {position:fixed;top:0;width:100%;background:var(--primary);color:#fff;display:flex;align-items:center;justify-content:space-between;padding:20px 40px;box-shadow:0 2px 6px rgba(0,0,0,0.1);z-index:1000;}
+.logo {display:flex;align-items:center;font-size:1.6em;font-weight:700;}
+.logo svg {width:32px;height:32px;margin-right:10px;fill:var(--accent);}
+nav a {color:#fff;margin-left:25px;text-decoration:none;font-weight:500;transition:opacity .3s;}
+nav a:hover {opacity:0.8;}
+.hero {background:linear-gradient(135deg,var(--secondary),var(--accent));color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:200px 20px 160px;text-align:center;}
+.hero h1 {font-size:3em;margin:10px 0;font-weight:700;}
+.hero p {font-size:1.3em;max-width:700px;margin:20px 0;}
+.btn {padding:16px 36px;border:none;border-radius:30px;font-size:1em;font-weight:600;cursor:pointer;margin:5px 8px;transition:all .3s;}
+.btn-primary {background:#fff;color:var(--secondary);}
+.btn-primary:hover {background:#e5efff;transform:translateY(-3px);}
+.btn-outline {background:transparent;border:2px solid #fff;color:#fff;}
+.btn-outline:hover {background:rgba(255,255,255,0.2);transform:translateY(-3px);}
+.section {padding:120px 40px;}
+.section h2 {text-align:center;font-size:2.6em;margin-bottom:60px;color:var(--primary);}
+.features-grid {display:flex;flex-wrap:wrap;justify-content:center;gap:30px;}
+.feature-card {background:#fff;border-radius:15px;box-shadow:0 6px 12px rgba(0,0,0,0.05);padding:40px 30px;width:320px;text-align:center;transition:transform .3s;}
+.feature-card:hover {transform:translateY(-5px);}
+.feature-icon {margin-bottom:20px;}
+.feature-icon svg {width:50px;height:50px;fill:var(--secondary);}
+.feature-card h3 {margin:0;font-size:1.5em;color:var(--primary);}
+.feature-card p {font-size:1em;margin-top:10px;color:var(--dark);}
+.forms-wrapper {display:flex;flex-wrap:wrap;justify-content:center;gap:50px;margin-top:40px;}
+.form-box {background:#fff;border-radius:15px;box-shadow:0 6px 12px rgba(0,0,0,0.05);padding:40px;width:360px;}
+.form-box h3 {margin-top:0;color:var(--primary);font-size:1.6em;}
+.form-box input {width:100%;padding:14px;margin:10px 0;border:1px solid #ccc;border-radius:8px;font-size:1em;}
+.form-box button {width:100%;padding:14px;border:none;border-radius:30px;background:var(--secondary);color:#fff;font-size:1em;font-weight:600;cursor:pointer;transition:background .3s;}
+.form-box button:hover {background:var(--primary);}
+footer {background:var(--primary);color:#fff;text-align:center;padding:30px;margin-top:80px;}
+@media (max-width:768px) {
+  .hero h1 {font-size:2.4em;}
+  .features-grid {flex-direction:column;align-items:center;}
+  .forms-wrapper {flex-direction:column;}
+}
 </style>
 </head>
 <body>
 <header>
-  <h1>GlobeCheck</h1>
+  <div class="logo">
+    <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="8 12 11 15 16 9" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    GlobeCheck
+  </div>
   <nav>
     <a href="#features">Fonctionnalités</a>
     <a href="#register">Inscription</a>
@@ -44,34 +64,43 @@ footer{background:#002B5B;color:#fff;text-align:center;padding:25px;margin-top:6
   </nav>
 </header>
 <section class="hero">
-  <h1>Réinventez vos check-ins avec l’IA</h1>
-  <p>Découvrez une solution globale de vérification d'identité rapide et sécurisée pour une expérience d'accueil sans friction.</p>
+  <h1>Révolutionnez vos check-ins avec l’IA</h1>
+  <p>Une plateforme d’enregistrement intelligente et sécurisée pour un accueil simplifié et professionnel à travers le monde.</p>
   <div>
-    <button class="btn btn-primary" onclick="scrollToSection('register')">Commencer maintenant</button>
-    <button class="btn btn-outline" onclick="scrollToSection('login')">Déjà inscrit ?</button>
+    <button class="btn btn-primary" onclick="scrollToSection('register')">Commencer gratuitement</button>
+    <button class="btn btn-outline" onclick="scrollToSection('login')">Déjà membre ?</button>
   </div>
 </section>
 <section id="features" class="section">
-  <h2>Fonctionnalités clés</h2>
+  <h2>Fonctionnalités</h2>
   <div class="features-grid">
-    <div class="feature">
-      <h3>Vérification IA instantanée</h3>
-      <p>Validation d'identité en quelques secondes grâce à notre IA avancée.</p>
+    <div class="feature-card">
+      <div class="feature-icon">
+        <svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/><polyline points="9 12 11 14 15 10" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <h3>Vérification IA avancée</h3>
+      <p>Analyse biométrique et vérification de documents pour une identité certifiée en temps réel.</p>
     </div>
-    <div class="feature">
-      <h3>Gestion automatisée</h3>
-      <p>Automatisez toutes les étapes du check-in pour gagner du temps.</p>
+    <div class="feature-card">
+      <div class="feature-icon">
+        <svg viewBox="0 0 24 24"><path d="M3 13h2v-2H3v2zm4 0h14v-2H7v2zm0 4h14v-2H7v2zm0-8h14V7H7v2zm-4 8h2v-2H3v2zm0-12v2h2V5H3zm4 12h14v-2H7v2z"/></svg>
+      </div>
+      <h3>Automatisation complète</h3>
+      <p>Simplifiez l’arrivée de vos invités avec des processus automatisés du début à la fin.</p>
     </div>
-    <div class="feature">
-      <h3>Sécurité renforcée</h3>
-      <p>Protégez vos propriétés avec des contrôles fiables et un suivi complet.</p>
+    <div class="feature-card">
+      <div class="feature-icon">
+        <svg viewBox="0 0 24 24"><path d="M12 2a9 9 0 00-9 9v7h4v4h10v-4h4v-7a9 9 0 00-9-9z"/></svg>
+      </div>
+      <h3>Protection optimale</h3>
+      <p>Des contrôles rigoureux pour sécuriser vos biens et garantir la tranquillité d’esprit.</p>
     </div>
   </div>
 </section>
 <section id="register" class="section">
   <h2>Créer un compte</h2>
-  <div class="forms-container">
-    <div class="form-card">
+  <div class="forms-wrapper">
+    <div class="form-box">
       <form id="registerForm">
         <h3>Inscription</h3>
         <input type="text" id="regUsername" placeholder="Nom d’utilisateur" required>
@@ -84,8 +113,8 @@ footer{background:#002B5B;color:#fff;text-align:center;padding:25px;margin-top:6
 </section>
 <section id="login" class="section">
   <h2>Connexion</h2>
-  <div class="forms-container">
-    <div class="form-card">
+  <div class="forms-wrapper">
+    <div class="form-box">
       <form id="loginForm">
         <h3>Connexion</h3>
         <input type="text" id="loginUsername" placeholder="Nom d’utilisateur" required>
@@ -100,32 +129,30 @@ footer{background:#002B5B;color:#fff;text-align:center;padding:25px;margin-top:6
   <p>&copy; 2025 GlobeCheck. Tous droits réservés.</p>
 </footer>
 <script>
-function scrollToSection(sectionId) {
-  document.getElementById(sectionId).scrollIntoView({ behavior: 'smooth' });
-}
-document.getElementById('registerForm').addEventListener('submit', async function(event) {
-  event.preventDefault();
-  const username = document.getElementById('regUsername').value;
-  const password = document.getElementById('regPassword').value;
-  const response = await fetch('http://localhost:3000/api/users', {
-    method:'POST',
-    headers: { 'Content-Type':'application/json' },
-    body: JSON.stringify({ username, password })
-  });
-  const result = await response.json();
-  document.getElementById('registerMessage').textContent = result.message;
+function scrollToSection(id){ document.getElementById(id).scrollIntoView({behavior:'smooth'}); }
+document.getElementById('registerForm').addEventListener('submit', async function(e){
+ e.preventDefault();
+ const username = document.getElementById('regUsername').value;
+ const password = document.getElementById('regPassword').value;
+ const response = await fetch('http://localhost:3000/api/users', {
+   method:'POST',
+   headers:{'Content-Type':'application/json'},
+   body: JSON.stringify({username, password})
+ });
+ const result = await response.json();
+ document.getElementById('registerMessage').textContent = result.message;
 });
-document.getElementById('loginForm').addEventListener('submit', async function(event) {
-  event.preventDefault();
-  const username = document.getElementById('loginUsername').value;
-  const password = document.getElementById('loginPassword').value;
-  const response = await fetch('http://localhost:3000/api/auth/login', {
-    method:'POST',
-    headers: { 'Content-Type':'application/json' },
-    body: JSON.stringify({ username, password })
-  });
-  const result = await response.json();
-  document.getElementById('loginMessage').textContent = result.message;
+document.getElementById('loginForm').addEventListener('submit', async function(e){
+ e.preventDefault();
+ const username = document.getElementById('loginUsername').value;
+ const password = document.getElementById('loginPassword').value;
+ const response = await fetch('http://localhost:3000/api/auth/login', {
+   method:'POST',
+   headers:{'Content-Type':'application/json'},
+   body: JSON.stringify({username, password})
+ });
+ const result = await response.json();
+ document.getElementById('loginMessage').textContent = result.message;
 });
 </script>
 </body>
