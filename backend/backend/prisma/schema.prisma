@@ -1,0 +1,235 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum UserRole {
+  ADMIN
+  HOST
+  GUEST
+}
+
+enum SubscriptionPlan {
+  FREE
+  STARTER
+  COMFORT
+  PROFESSIONAL
+}
+
+enum VerificationStatus {
+  PENDING
+  IN_PROGRESS
+  COMPLETED
+  FAILED
+  REJECTED
+}
+
+enum DocumentType {
+  PASSPORT
+  NATIONAL_ID
+  DRIVERS_LICENSE
+  OTHER
+}
+
+model User {
+  id                String            @id @default(uuid())
+  email             String            @unique
+  password          String
+  firstName         String?
+  lastName          String?
+  phone             String?
+  role              UserRole          @default(HOST)
+  isEmailVerified   Boolean           @default(false)
+  twoFactorEnabled  Boolean           @default(false)
+  twoFactorSecret   String?
+  avatar            String?
+  subscriptionPlan  SubscriptionPlan  @default(FREE)
+  subscriptionEndsAt DateTime?
+  createdAt         DateTime          @default(now())
+  updatedAt         DateTime          @updatedAt
+  lastLogin         DateTime?
+
+  properties        Property[]
+  verifications     Verification[]
+  contracts         Contract[]
+  notifications     Notification[]
+  refreshTokens     RefreshToken[]
+  analytics         Analytics[]
+
+  @@index([email])
+  @@map("users")
+}
+
+model RefreshToken {
+  id        String   @id @default(uuid())
+  token     String   @unique
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+
+  @@index([userId])
+  @@map("refresh_tokens")
+}
+
+model Property {
+  id              String    @id @default(uuid())
+  name            String
+  address         String
+  city            String
+  country         String    @default("Morocco")
+  propertyType    String    // Hotel, Apartment, Villa, etc.
+  capacity        Int
+  description     String?
+  images          String[]  // Array of image URLs
+  userId          String
+  user            User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  isActive        Boolean   @default(true)
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+
+  verifications   Verification[]
+  contracts       Contract[]
+  analytics       Analytics[]
+
+  @@index([userId])
+  @@map("properties")
+}
+
+model Verification {
+  id                    String              @id @default(uuid())
+  propertyId            String
+  property              Property            @relation(fields: [propertyId], references: [id], onDelete: Cascade)
+  userId                String
+  user                  User                @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  // Guest Information
+  guestFirstName        String
+  guestLastName         String
+  guestEmail            String
+  guestPhone            String?
+  guestNationality      String?
+
+  // Document Information
+  documentType          DocumentType
+  documentNumber        String?
+  documentIssuedDate    DateTime?
+  documentExpiryDate    DateTime?
+  documentIssuedCountry String?
+  documentFrontImage    String?             // S3 URL or local path
+  documentBackImage     String?
+
+  // Biometric Data
+  selfieImage           String?
+  faceMatchScore        Float?              // 0-100 score
+  livenessScore         Float?              // 0-100 score
+
+  // AI Analysis
+  ocrData               Json?               // Extracted OCR data
+  fraudScore            Float?              // 0-100 risk score
+  aiNotes               String?             // AI-generated notes
+
+  // Status
+  status                VerificationStatus  @default(PENDING)
+  verifiedAt            DateTime?
+  rejectionReason       String?
+
+  // WhatsApp Integration
+  whatsappSent          Boolean             @default(false)
+  whatsappLink          String?
+
+  createdAt             DateTime            @default(now())
+  updatedAt             DateTime            @updatedAt
+
+  contract              Contract?
+
+  @@index([propertyId])
+  @@index([userId])
+  @@index([status])
+  @@index([guestEmail])
+  @@map("verifications")
+}
+
+model Contract {
+  id                String        @id @default(uuid())
+  verificationId    String        @unique
+  verification      Verification  @relation(fields: [verificationId], references: [id], onDelete: Cascade)
+  propertyId        String
+  property          Property      @relation(fields: [propertyId], references: [id], onDelete: Cascade)
+  userId            String
+  user              User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  // Contract Details
+  contractTemplate  String        // HTML template
+  contractData      Json          // Dynamic data
+  pdfUrl            String?       // Generated PDF URL
+
+  // Signature
+  isSigned          Boolean       @default(false)
+  signedAt          DateTime?
+  signatureImage    String?
+  ipAddress         String?
+
+  // Terms
+  checkInDate       DateTime
+  checkOutDate      DateTime
+  totalAmount       Float?
+  currency          String        @default("MAD")
+
+  createdAt         DateTime      @default(now())
+  updatedAt         DateTime      @updatedAt
+
+  @@index([propertyId])
+  @@index([userId])
+  @@map("contracts")
+}
+
+model Notification {
+  id        String   @id @default(uuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  title     String
+  message   String
+  type      String   // success, warning, error, info
+  isRead    Boolean  @default(false)
+  link      String?
+  createdAt DateTime @default(now())
+
+  @@index([userId])
+  @@index([isRead])
+  @@map("notifications")
+}
+
+model Analytics {
+  id                  String   @id @default(uuid())
+  propertyId          String
+  property            Property @relation(fields: [propertyId], references: [id], onDelete: Cascade)
+  userId              String
+  user                User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  // Metrics
+  date                DateTime @default(now())
+  verificationsCount  Int      @default(0)
+  successfulCheckins  Int      @default(0)
+  failedVerifications Int      @default(0)
+  occupancyRate       Float?   // Percentage
+  averageProcessTime  Float?   // In seconds
+
+  // AI Insights
+  aiInsights          Json?    // AI-generated insights
+
+  createdAt           DateTime @default(now())
+  updatedAt           DateTime @updatedAt
+
+  @@unique([propertyId, date])
+  @@index([userId])
+  @@index([date])
+  @@map("analytics")
+}

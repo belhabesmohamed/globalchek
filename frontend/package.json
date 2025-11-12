@@ -1,0 +1,42 @@
+{
+  "name": "globalchek-frontend",
+  "version": "2.0.0",
+  "description": "Frontend moderne pour GlobalChek - Plateforme de vérification d'identité avec IA",
+  "private": true,
+  "scripts": {
+    "dev": "next dev -p 3001",
+    "build": "next build",
+    "start": "next start -p 3001",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "next": "^15.0.3",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "axios": "^1.6.2",
+    "zustand": "^4.4.7",
+    "socket.io-client": "^4.6.0",
+    "@tanstack/react-query": "^5.14.2",
+    "react-hook-form": "^7.49.2",
+    "zod": "^3.22.4",
+    "@hookform/resolvers": "^3.3.3",
+    "clsx": "^2.0.0",
+    "tailwind-merge": "^2.2.0",
+    "lucide-react": "^0.303.0",
+    "date-fns": "^3.0.6",
+    "recharts": "^2.10.3",
+    "react-dropzone": "^14.2.3",
+    "sonner": "^1.3.1"
+  },
+  "devDependencies": {
+    "typescript": "^5.3.3",
+    "@types/node": "^20.10.6",
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "autoprefixer": "^10.4.16",
+    "postcss": "^8.4.32",
+    "tailwindcss": "^3.4.0",
+    "eslint": "^8.56.0",
+    "eslint-config-next": "^15.0.3"
+  }
+}
